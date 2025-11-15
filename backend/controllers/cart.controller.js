@@ -31,7 +31,7 @@ async function addToCart(req, res) {
       return res.status(400).json({ message: 'Product ID și quantity necesare' });
     }
 
-    // verificăm că produsul există
+    
     const product = await prisma.product.findUnique({
       where: { id: productId }
     });
@@ -39,7 +39,7 @@ async function addToCart(req, res) {
       return res.status(404).json({ message: 'Produsul nu există' });
     }
 
-    // Verificăm dacă item-ul există deja în coș
+   
     const existing = await prisma.cartItem.findFirst({
       where: { userId: req.user.id, productId }
     });

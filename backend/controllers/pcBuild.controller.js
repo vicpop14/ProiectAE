@@ -104,7 +104,7 @@ async function createBuild(req, res) {
         .json({ message: 'Nume și cel puțin o componentă sunt necesare' });
     }
 
-    // verificăm că produsele există
+    
     const productIds = components.map(c => c.productId);
     const products = await prisma.product.findMany({
       where: { id: { in: productIds } }
@@ -142,7 +142,7 @@ async function createBuild(req, res) {
   }
 }
 
-// PUT /api/builds/:id – actualizează nume / flag asamblare
+
 async function updateBuild(req, res) {
   try {
     const id = Number(req.params.id);
@@ -174,12 +174,12 @@ async function updateBuild(req, res) {
   }
 }
 
-// DELETE /api/builds/:id
+
 async function deleteBuild(req, res) {
   try {
     const id = Number(req.params.id);
 
-    // ne asigurăm că build-ul e al userului curent
+   
     const build = await prisma.pcBuild.findFirst({
       where: { id, userId: req.user.id }
     });
@@ -203,7 +203,7 @@ async function deleteBuild(req, res) {
   }
 }
 
-// POST /api/builds/:id/add-to-cart
+
 async function addBuildToCart(req, res) {
   try {
     const id = Number(req.params.id);
@@ -241,9 +241,9 @@ async function addBuildToCart(req, res) {
       });
     }
 
-    // tranzacție: toate operațiile pe coș se fac împreună
+    
     await prisma.$transaction(async tx => {
-      // componente
+      
       for (const comp of components) {
         const existing = await tx.cartItem.findFirst({
           where: { userId: req.user.id, productId: comp.productId }
@@ -265,7 +265,7 @@ async function addBuildToCart(req, res) {
         }
       }
 
-      // serviciul de asamblare
+    
       if (serviceProduct) {
         const existingService = await tx.cartItem.findFirst({
           where: { userId: req.user.id, productId: serviceProduct.id }

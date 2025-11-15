@@ -21,7 +21,7 @@ async function requireAuth(req, res, next) {
       return res.status(401).json({ message: 'Invalid token user' });
     }
 
-    req.user = user; // atașăm userul la request
+    req.user = user; 
     next();
   } catch (err) {
     console.error('Auth error:', err.message);

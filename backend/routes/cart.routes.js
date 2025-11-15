@@ -15,7 +15,7 @@ router.post('/', requireAuth, addToCart);
 router.put('/:id', requireAuth, updateCartItem);
 router.delete('/:id', requireAuth, deleteCartItem);
 
-// golește coșul utilizatorului curent
+
 router.delete('/', requireAuth, clearCart);
 
 module.exports = router;

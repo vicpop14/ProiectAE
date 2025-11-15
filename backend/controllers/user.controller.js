@@ -70,7 +70,7 @@ async function deleteMe(req, res) {
     const userId = req.user.id;
 
     await prisma.$transaction(async tx => {
-      // ștergem tot ce depinde de user (în ordinea sigură)
+      
       await tx.orderItem.deleteMany({
         where: { order: { userId } }
       });
