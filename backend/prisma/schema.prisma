@@ -1,0 +1,85 @@
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  passwordHash String
+  role        String    @default("user")
+
+  cartItems   CartItem[]
+  builds      PcBuild[]
+  orders       Order[]
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  category    String
+  price       Float
+  imageUrl    String?
+  stock       Int       @default(0)
+
+  buildComponents PcBuildComponent[]
+  cartItems       CartItem[]
+  orderItems      OrderItem[]
+}
+
+model PcBuild {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  name      String
+  isAssembledByShop Boolean @default(false)
+
+  user      User      @relation(fields: [userId], references: [id])
+  components PcBuildComponent[]
+}
+
+model PcBuildComponent {
+  id        Int     @id @default(autoincrement())
+  pcBuildId Int
+  productId Int
+  quantity  Int     @default(1)
+  roleInBuild String
+
+  pcBuild   PcBuild @relation(fields: [pcBuildId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model CartItem {
+  id        Int     @id @default(autoincrement())
+  userId    Int
+  productId Int
+  quantity  Int @default(1)
+
+  user     User    @relation(fields: [userId], references: [id])
+  product  Product @relation(fields: [productId], references: [id])
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  userId    Int
+  user      User        @relation(fields: [userId], references: [id])
+  createdAt DateTime    @default(now())
+  total     Float
+
+  items     OrderItem[]
+}
+
+model OrderItem {
+  id           Int      @id @default(autoincrement())
+  orderId      Int
+  productId    Int
+  quantity     Int
+  priceAtOrder Float
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}

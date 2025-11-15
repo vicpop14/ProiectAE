@@ -1,0 +1,174 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #111827;
+  background-color: #f3f4f6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* shell general */
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 16px 40px;
+}
+
+/* NAVBAR */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 24px;
+}
+
+.nav-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.nav-links a {
+  margin-right: 12px;
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav-links a:last-child {
+  margin-right: 0;
+}
+
+.nav-links a:hover {
+  color: #111827;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* butoane */
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: #4f46e5;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #4338ca;
+}
+
+.btn-outline {
+  background: white;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.btn-outline:hover {
+  background: #f3f4f6;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+/* carduri + grile */
+
+.page-title {
+  margin: 0 0 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.card + .card {
+  margin-top: 10px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+/* texte mici */
+
+.text-muted {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+/* formulare */
+
+input,
+textarea {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 6px 8px;
+  font: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #4f46e5;
+  outline-offset: 1px;
+}
+
+/* secțiuni */
+
+.section {
+  margin-bottom: 24px;
+}
+
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -12px;
+  background: #ef4444;
+  color: white;
+  border-radius: 999px;
+  padding: 0 6px;
+  font-size: 0.7rem;
+  min-width: 18px;
+  text-align: center;
+  font-weight: 600;
+}
