@@ -63,7 +63,7 @@ async function login(req, res) {
 }
 
 async function me(req, res) {
-  // req.user vine din requireAuth
+  
   res.json(req.user);
 }
 

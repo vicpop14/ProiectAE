@@ -25,7 +25,7 @@ function Navbar() {
     }
     try {
       const data = await apiRequest("/api/cart");
-      // dacă răspunsul tău e { items, total }
+      
       const items = data.items || [];
       const count = items.reduce((sum, item) => sum + item.quantity, 0);
       setCartCount(count);
@@ -35,7 +35,7 @@ function Navbar() {
   }
 
   useEffect(() => {
-    // la mount + când se schimbă tokenul (login/logout)
+   
     fetchCartCount();
 
     function handleCartUpdated() {
